@@ -1,0 +1,53 @@
+$bg-color: #ffffff;
+$base-color: #4f46e5;
+$light-color: inherit;
+
+.loading-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	h1 {
+		font-weight: 700;
+	}
+}
+
+.loading-spinner {
+	width: 200px;
+	height: 200px;
+	display: inline-block;
+	overflow: hidden;
+	background: inherit;
+}
+.loading-spinner-item {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	transform: translateZ(0) scale(1);
+	backface-visibility: hidden;
+	transform-origin: 0 0;
+
+	div {
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		background: $base-color;
+		animation: loading-spinner-item 1s linear infinite;
+		box-sizing: content-box;
+	}
+}
+@keyframes loading-spinner-item {
+	0% {
+		background: inherit;
+	}
+	12.5% {
+		background: inherit;
+	}
+	12.625% {
+		background: $base-color;
+	}
+	100% {
+		background: $base-color;
+	}
+}
