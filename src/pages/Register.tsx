@@ -6,6 +6,10 @@ import { Button, Col, Form, FormGroup, Label, Row } from 'reactstrap';
 import MainLayout from '../components/layouts/MainLayout';
 import Axios from '../utils/axios';
 import Image from '../assets/images/features-3.png';
+import {
+	errorNotification,
+	successNotification
+} from '../store/ducks/notification.duck';
 
 const Register: FC = () => {
 	const dispatch = useDispatch();
@@ -18,9 +22,16 @@ const Register: FC = () => {
 
 	const onSubmit = async (data: any) => {
 		try {
-			const result = await Axios.post('/auth/signup', data);
-			console.log(result);
-		} catch (e) {}
+			await Axios.post('/auth/signup', data);
+			dispatch(
+				successNotification(
+					'Usuario creado correctamente, verifique su correo para continuar'
+				)
+			);
+			dispatch(push('/signin'));
+		} catch (e) {
+			dispatch(errorNotification('El usuario no se guardó'));
+		}
 	};
 
 	return (
